@@ -1,13 +1,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: frontapp
-  # ЛЮБОЙ из вариантов:
+  name: frontapp-ingress
   annotations:
-    kubernetes.io/ingress.class: traefik
-  # ИЛИ вместо аннотации:
-  # ingressClassName: traefik
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
     - host: frontapp.compnet.kz
       http:
@@ -19,3 +17,4 @@ spec:
                 name: frontapp
                 port:
                   number: 80
+
